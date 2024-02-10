@@ -54,6 +54,11 @@
   <div>
     <div class="container mt-3">
       <input id="searchInput" type="text" class="form-control mb-3 " placeholder="Search...">
+      <form id="projectForm">
+        <input type="text" id="projectName" name="project_name" placeholder="Enter project name" class="mb-3">
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+      <div id="confirmationMessage" style="display: none;"></div> <!-- Confirmation message div -->
       <ul class="nav nav-tabs" role="tablist">
         <li class="nav-item" role="presentation">
           <a class="nav-link active" data-bs-toggle="tab" href="#formCreation" aria-selected="true" role="tab">Form
@@ -147,6 +152,28 @@
   <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
   <script>
     $(document).ready(function () {
+      $('#projectForm').submit(function (e) {
+        e.preventDefault();
+        var projectName = $('#projectName').val();
+        $.ajax({
+          type: 'POST',
+          url: '/store_project_name/',
+          data: {
+            'project_name': projectName,
+            csrfmiddlewaretoken: '{{ csrf_token }}'
+          },
+          success: function (response) {
+            $('#confirmationMessage').text(response.message).show(); // Display confirmation message
+            setTimeout(function () {
+              $('#confirmationMessage').hide(); // Hide confirmation message after 3 seconds
+            }, 3000);
+          },
+          error: function (xhr, status, error) {
+            $('#confirmationMessage').text(xhr.responseJSON.message).show(); // Display error message
+          }
+        });
+      });
+
       var formCounter = 1;
       function generateFormHtml(formId) {
         return `
