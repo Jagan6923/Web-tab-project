@@ -51,7 +51,7 @@
       <a class="navbar-brand" href="#">Web components</a>
     </div>
   </nav>
-<div>
+  <div>
     <div class="container mt-3">
       <input id="searchInput" type="text" class="form-control mb-3 " placeholder="Search...">
       <form id="projectForm" class="mb-3">
@@ -317,46 +317,47 @@
     document.getElementById("submitBtn")
       .addEventListener("click", function () { alert("Thank you forsubmitting!"); });
 
-      $('#projectForm').submit(function(e) {
-      e.preventDefault();
-      var projectName = $('#projectName').val();
-      $.ajax({
-        type: 'POST',
-        url: '/save_project/',
-        data: {
-          'project_name': projectName,
-          'csrfmiddlewaretoken': '{{ csrf_token }}'
-        },
-        success: function(response) {
-          $('#message').text(response.message);
-        },
-        error: function(xhr, status, error) {
-          console.error(xhr.responseText);
-        }
+    $(document).ready(function () {
+      $('#projectForm').submit(function (e) {
+        e.preventDefault();
+        var projectName = $('#projectName').val();
+        $.ajax({
+          type: 'POST',
+          url: '/save_project/',
+          data: {
+            'project_name': projectName,
+            'csrfmiddlewaretoken': '{{ csrf_token }}'
+          },
+          success: function (response) {
+            alert(response.message);
+            $('#projectName').val('');
+            location.reload();
+          },
+          error: function (xhr, status, error) {
+            console.error(xhr.responseText);
+          }
+        });
       });
-    });
-    $(document).ready(function() {
-    $('#projectName').blur(function() {
+      $('#projectName').blur(function () {
         var projectName = $(this).val();
         $.ajax({
-            type: 'POST',
-            url: '/validate_project_name/',
-            data: {
-                'project_name': projectName,
-                'csrfmiddlewaretoken': '{{ csrf_token }}'
-            },
-            success: function(response) {
-                if (response.exists) {
-                    alert('Project name already used!');
-                }
-            },
-            error: function(xhr, status, error) {
-                console.error(xhr.responseText);
+          type: 'POST',
+          url: '/validate_project_name/',
+          data: {
+            'project_name': projectName,
+            'csrfmiddlewaretoken': '{{ csrf_token }}'
+          },
+          success: function (response) {
+            if (response.exists) {
+              alert('Project name already used!');
             }
+          },
+          error: function (xhr, status, error) {
+            console.error(xhr.responseText);
+          }
         });
+      });
     });
-});
-
   </script>
 </body>
 
