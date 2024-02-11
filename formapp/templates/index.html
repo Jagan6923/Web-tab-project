@@ -51,9 +51,17 @@
       <a class="navbar-brand" href="#">Web components</a>
     </div>
   </nav>
+
+  
+
   <div>
     <div class="container mt-3">
       <input id="searchInput" type="text" class="form-control mb-3 " placeholder="Search...">
+      <form id="projectForm" class="mb-3">
+        <input type="text" id="projectName" placeholder="Enter project name">
+        <button type="submit">Submit</button>
+      </form>
+      <div id="message"></div>
       <ul class="nav nav-tabs" role="tablist">
         <li class="nav-item" role="presentation">
           <a class="nav-link active" data-bs-toggle="tab" href="#formCreation" aria-selected="true" role="tab">Form
@@ -311,6 +319,25 @@
     });
     document.getElementById("submitBtn")
       .addEventListener("click", function () { alert("Thank you forsubmitting!"); });
+
+      $('#projectForm').submit(function(e) {
+      e.preventDefault();
+      var projectName = $('#projectName').val();
+      $.ajax({
+        type: 'POST',
+        url: '/save_project/',
+        data: {
+          'project_name': projectName,
+          'csrfmiddlewaretoken': '{{ csrf_token }}'
+        },
+        success: function(response) {
+          $('#message').text(response.message);
+        },
+        error: function(xhr, status, error) {
+          console.error(xhr.responseText);
+        }
+      });
+    });
   </script>
 </body>
 
