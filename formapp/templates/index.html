@@ -51,7 +51,7 @@
       <a class="navbar-brand" href="#">Web components</a>
     </div>
   </nav>
-
+  
   
 
   <div>
@@ -338,6 +338,28 @@
         }
       });
     });
+    $(document).ready(function() {
+    $('#projectName').blur(function() {
+        var projectName = $(this).val();
+        $.ajax({
+            type: 'POST',
+            url: '/validate_project_name/',
+            data: {
+                'project_name': projectName,
+                'csrfmiddlewaretoken': '{{ csrf_token }}'
+            },
+            success: function(response) {
+                if (response.exists) {
+                    alert('Project name already used!');
+                }
+            },
+            error: function(xhr, status, error) {
+                console.error(xhr.responseText);
+            }
+        });
+    });
+});
+
   </script>
 </body>
 
