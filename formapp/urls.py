@@ -1,4 +1,3 @@
-
 from django.urls import path
 from .views import index, save_project, validate_project_name
 
