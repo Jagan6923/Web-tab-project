@@ -6,6 +6,7 @@
   <title>Tabs</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
 
+
   <style>
     body {
       background-color: #f4f4f4;
@@ -42,6 +43,11 @@
     .nav {
       background-color: #c4e5fa;
     }
+
+    .message {
+      color: rgb(255, 255, 255);
+      padding: 3px 6px;
+    }
   </style>
 </head>
 
@@ -54,10 +60,11 @@
   <div>
     <div class="container mt-3">
       <input id="searchInput" type="text" class="form-control mb-3 " placeholder="Search...">
-      <form id="projectForm" class="mb-3">
+      <form id="projectForm" class="mb-1">
         <input type="text" id="projectName" placeholder="Enter project name">
         <button type="submit">Submit</button>
       </form>
+      <div id="message" class="bg-success mb-3"></div>
       <ul class="nav nav-tabs" role="tablist">
         <li class="nav-item" role="presentation">
           <a class="nav-link active" data-bs-toggle="tab" href="#formCreation" aria-selected="true" role="tab">Form
@@ -135,11 +142,12 @@
             </form>
 
           </div>
-          <div class="col-md-12">
-            <button id="submitBtn" class="btn btn-primary">Submit</button>
-            <button type="button" class="btn btn-secondary ms-2 cancel-form">Cancel</button>
-            <button type="reset" class="btn btn-danger ms-2">Reset</button>
-          </div>
+
+        </div>
+        <div class="col-md-12 mb-5">
+          <button id="submitBtn" class="btn btn-primary">Submit</button>
+          <button type="button" class="btn btn-secondary ms-2 cancel-form">Cancel</button>
+          <button type="reset" class="btn btn-danger ms-2">Reset</button>
         </div>
       </div>
       <div class="row mb-3">
@@ -317,6 +325,16 @@
       .addEventListener("click", function () { alert("Thank you forsubmitting!"); });
 
     $(document).ready(function () {
+      var formCounter = 1;
+
+      // Function to reset form and hide message
+      function resetFormAndMessage() {
+        $('#projectForm')[0].reset(); // Reset the form
+        $('#message').empty(); // Clear the message
+      }
+
+      // Rest of your existing code...
+
       $('#projectForm').submit(function (e) {
         e.preventDefault();
         var projectName = $('#projectName').val();
@@ -328,15 +346,20 @@
             'csrfmiddlewaretoken': '{{ csrf_token }}'
           },
           success: function (response) {
-            alert(response.message);
-            $('#projectName').val('');
-            location.reload();
+            if (response.success) {
+              displayMessage('Project name saved successfully!!');
+              resetFormAndMessage(); // Reset the form and hide message
+              location.reload();
+            } else {
+              displayMessage(response.message);
+            }
           },
           error: function (xhr, status, error) {
             console.error(xhr.responseText);
           }
         });
       });
+
       $('#projectName').blur(function () {
         var projectName = $(this).val();
         $.ajax({
@@ -348,7 +371,9 @@
           },
           success: function (response) {
             if (response.exists) {
-              alert('Project name already used!');
+              displayMessage('Project name already used!');
+            } else {
+              displayMessage('Project name is available.');
             }
           },
           error: function (xhr, status, error) {
@@ -356,6 +381,12 @@
           }
         });
       });
+
+      // Function to display message dynamically
+      function displayMessage(message) {
+        var messageElement = $('<span></span>').text(message).addClass('message');
+        $('#message').empty().append(messageElement);
+      }
     });
   </script>
 </body>
