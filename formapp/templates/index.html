@@ -36,7 +36,7 @@
     }
 
     .form-control {
-      background-color: #ecf0f1;
+      background-color: #c4e5fa;
     }
 
     .nav {
@@ -53,10 +53,12 @@
   </nav>
   <div>
     <div class="container mt-3">
-      <input id="searchInput" type="text" class="form-control mb-3 " placeholder="Search...">
       <form id="projectForm" class="mb-3">
+        <input id="searchInput" type="text" class="form-control mb-3 " placeholder="Search...">
         <input type="text" id="projectName" placeholder="Enter project name">
         <button type="submit">Submit</button>
+        <span id="successMessage" class="bg-success"></span>
+        <span id="errorMessage" class="bg-danger"></span>
       </form>
       <ul class="nav nav-tabs" role="tablist">
         <li class="nav-item" role="presentation">
@@ -74,7 +76,7 @@
       </ul>
 
       <div class="tab-content mt-3">
-        <div class="tab-pane fade show active" id="formCreation" role="tabpanel">
+        <div class="tab-pane fade show active mb-3" id="formCreation" role="tabpanel">
           <div id="formsContainer">
             <form class="dynamic-form" id="form1">
               <div class="row mb-3">
@@ -133,13 +135,12 @@
                 </div>
               </div>
             </form>
-
           </div>
-          <div class="col-md-12">
-            <button id="submitBtn" class="btn btn-primary">Submit</button>
-            <button type="button" class="btn btn-secondary ms-2 cancel-form">Cancel</button>
-            <button type="reset" class="btn btn-danger ms-2">Reset</button>
-          </div>
+        </div>
+        <div class="col-md-12">
+          <button id="submitBtn" class="btn btn-primary">Submit</button>
+          <button type="button" class="btn btn-secondary ms-2 cancel-form">Cancel</button>
+          <button type="reset" class="btn btn-danger ms-2">Reset</button>
         </div>
       </div>
       <div class="row mb-3">
@@ -314,7 +315,7 @@
       });
     });
     document.getElementById("submitBtn")
-      .addEventListener("click", function () { alert("Thank you forsubmitting!"); });
+      .addEventListener("click", function () { alert("Thank you for submitting!"); });
 
     $(document).ready(function () {
       $('#projectForm').submit(function (e) {
@@ -328,9 +329,11 @@
             'csrfmiddlewaretoken': '{{ csrf_token }}'
           },
           success: function (response) {
-            alert(response.message);
+            $('#errorMessage').removeClass('bg-danger').addClass('bg-success').text(response.message);
             $('#projectName').val('');
-            location.reload();
+            setTimeout(function () {
+              $('#errorMessage').removeClass('bg-success').text('');
+            }, 2000);
           },
           error: function (xhr, status, error) {
             console.error(xhr.responseText);
@@ -348,7 +351,9 @@
           },
           success: function (response) {
             if (response.exists) {
-              alert('Project name already used!');
+              $('#errorMessage').removeClass('bg-success').addClass('bg-danger').text('Project name already used!');
+            } else {
+              $('#errorMessage').removeClass('bg-danger bg-success').text('');
             }
           },
           error: function (xhr, status, error) {
