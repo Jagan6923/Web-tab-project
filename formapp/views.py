@@ -1,17 +1,24 @@
+# views.py in formapp app
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.http import JsonResponse
+from .models import Project
 
 def index(request):
     return render(request, 'index.html')
 
-def submit_form(request):
+def save_project(request):
     if request.method == 'POST':
-        # Handle form submission logic here
-        # For example, you can access form data using request.POST
-        form_data = request.POST
-        # Process the form data as needed
-        
-        # Return an appropriate response
-        return HttpResponse('Form submitted successfully!')
-    else:
-        return HttpResponse('Invalid request method!')
+        project_name = request.POST.get('project_name')
+        if Project.objects.filter(name=project_name).exists():
+            return JsonResponse({'message': 'Name already used'}, status=400)
+        else:
+            Project.objects.create(name=project_name)
+            return JsonResponse({'message': 'Project name saved successfully!!'})
+    return JsonResponse({'message': 'Invalid request'}, status=400)
+
+def validate_project_name(request):
+    if request.method == 'POST':
+        project_name = request.POST.get('project_name')
+        exists = Project.objects.filter(name=project_name).exists()
+        return JsonResponse({'exists': exists})
+    return JsonResponse({'exists': False})

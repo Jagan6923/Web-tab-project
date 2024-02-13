@@ -1,7 +1,8 @@
 from django.urls import path
-from . import views
+from .views import index, save_project, validate_project_name
 
 urlpatterns = [
-    path('', views.index, name='index'),
-    path('submit/', views.submit_form, name='submit_form'),
+    path('', index, name='index'),
+    path('save_project/', save_project, name='save_project'),
+    path('validate_project_name/', validate_project_name, name='validate_project_name'),
 ]
