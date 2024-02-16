@@ -405,31 +405,31 @@
       emptyGrid.appendChild(draggableInput);
     });
     $(document).ready(function () {
-    $('#gridsubmitButton').click(function () {
+      $('#gridsubmitButton').click(function () {
         var data = $('#draggableInput').val();
         var x_axis = parseFloat($('#draggableInput').css('left').replace('px', ''));
         var y_axis = parseFloat($('#draggableInput').css('top').replace('px', ''));
         $.ajax({
-            type: 'POST',
-            url: '/save_draggable_input/',
-            data: {
-                'data': data,
-                'x_axis': x_axis,
-                'y_axis': y_axis,
-                'csrfmiddlewaretoken': '{{ csrf_token }}'
-            },
-            success: function (response) {
-                $('#confirmationMessage').removeClass('bg-danger').addClass('bg-info').text('Data submitted successfully!');
-                setTimeout(function () {
-                    $('#confirmationMessage').text('');
-                }, 2000);
-            },
-            error: function (xhr, status, error) {
-                console.error(xhr.responseText);
-            }
+          type: 'POST',
+          url: '/save_draggable_input/',
+          data: {
+            'data': data,
+            'x_axis': x_axis,
+            'y_axis': y_axis,
+            'csrfmiddlewaretoken': '{{ csrf_token }}'
+          },
+          success: function (response) {
+            $('#confirmationMessage').removeClass('bg-danger').addClass('bg-info').text('Data submitted successfully!');
+            setTimeout(function () {
+              $('#confirmationMessage').text('');
+            }, 2000);
+          },
+          error: function (xhr, status, error) {
+            console.error(xhr.responseText);
+          }
         });
+      });
     });
-});
 
   </script>
 </body>
