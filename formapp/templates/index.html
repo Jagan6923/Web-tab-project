@@ -156,9 +156,18 @@
           </div>
         </div>
         <div class="grid" id="emptyGrid">
-          <input type="text" class="form-control form-control-sm mt-3 smaller-input" placeholder="Field"
-            id="draggableInput" draggable="true" ondragstart="startDrag(event)">
+          <div>
+            <div class="draggable-container">
+              <input type="text" class="form-control form-control-sm mt-3 smaller-input" placeholder="Field"
+                id="draggableInput" draggable="true" ondragstart="startDrag(event)">
+            </div>
+            <div class="draggable-container">
+              <input type="text" class="form-control form-control-sm mt-3 smaller-input" placeholder="Field"
+                id="draggableInput" draggable="true" ondragstart="startDrag(event)">
+            </div>
+          </div>
         </div>
+
         <div class="container mt-3">
           <button type="submit" class="btn btn-primary" id="gridsubmitButton">Submit</button>
           <span id="confirmationMessage" class="bg-info"></span>
