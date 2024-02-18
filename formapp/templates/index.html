@@ -55,20 +55,12 @@
       top: 0;
       left: 0;
     }
-
-    .draggable-label {
+    .smaller-input1 {
+      width: auto;
       position: absolute;
-      pointer-events: none;
-    }
-
-    .draggable-field {
-      position: relative;
-      margin-bottom: 20px;
-      /* Adjust spacing between draggable fields */
-    }
-
-    .form-group {
-      position: relative;
+      top: 0;
+      left: 0;
+      background-color: rgb(200, 197, 197);
     }
   </style>
 </head>
@@ -172,28 +164,53 @@
         </div>
         <div class="grid" id="emptyGrid">
           <div class="draggable-field" draggable="true" ondragstart="startDrag(event)" data-field-id="1">
-            <input type="text" class="form-control form-control-sm mt-3 smaller-input" placeholder="Field 1"
-              id="draggableInput1" draggable="true" style="left: 10px; top: 10px;">
+            <label class="form-control form-control-sm mt-3 smaller-input1" id="draggableInput1" draggable="true"
+              style="left: 10px; top: 10px;">Label 1</label>
           </div>
 
           <div class="draggable-field" draggable="true" ondragstart="startDrag(event)" data-field-id="2">
-            <input type="text" class="form-control form-control-sm mt-3 smaller-input" placeholder="Field 2"
-              id="draggableInput2" draggable="true" style="left: 120px; top: 10px;">
+            <label class="form-control form-control-sm mt-3 smaller-input1" id="draggableInput2" draggable="true"
+              style="left: 120px; top: 10px;">Label 2</label>
           </div>
 
           <div class="draggable-field" draggable="true" ondragstart="startDrag(event)" data-field-id="3">
-            <input type="text" class="form-control form-control-sm mt-3 smaller-input" placeholder="Field 3"
-              id="draggableInput3" draggable="true" style="left: 230px; top: 10px;">
+            <label class="form-control form-control-sm mt-3 smaller-input1" id="draggableInput3" draggable="true"
+              style="left: 230px; top: 10px;">Label 3</label>
           </div>
 
           <div class="draggable-field" draggable="true" ondragstart="startDrag(event)" data-field-id="4">
-            <input type="text" class="form-control form-control-sm mt-3 smaller-input" placeholder="Field 4"
-              id="draggableInput4" draggable="true" style="left: 340px; top: 10px;">
+            <label class="form-control form-control-sm mt-3 smaller-input1" id="draggableInput4" draggable="true"
+              style="left: 340px; top: 10px;">Label 4</label>
           </div>
 
           <div class="draggable-field" draggable="true" ondragstart="startDrag(event)" data-field-id="5">
+            <label class="form-control form-control-sm mt-3 smaller-input1" id="draggableInput5" draggable="true"
+              style="left: 450px; top: 10px;">Label 5</label>
+          </div>
+
+          <div class="draggable-field" draggable="true" ondragstart="startDrag(event)" data-field-id="6">
+            <input type="text" class="form-control form-control-sm mt-3 smaller-input" placeholder="Field 1"
+              id="draggableInput6" draggable="true" style="left: 10px; top: 50px;">
+          </div>
+
+          <div class="draggable-field" draggable="true" ondragstart="startDrag(event)" data-field-id="7">
+            <input type="text" class="form-control form-control-sm mt-3 smaller-input" placeholder="Field 2"
+              id="draggableInput7" draggable="true" style="left: 120px; top: 50px;">
+          </div>
+
+          <div class="draggable-field" draggable="true" ondragstart="startDrag(event)" data-field-id="8">
+            <input type="text" class="form-control form-control-sm mt-3 smaller-input" placeholder="Field 3"
+              id="draggableInput8" draggable="true" style="left: 230px; top: 50px;">
+          </div>
+
+          <div class="draggable-field" draggable="true" ondragstart="startDrag(event)" data-field-id="9">
+            <input type="text" class="form-control form-control-sm mt-3 smaller-input" placeholder="Field 4"
+              id="draggableInput9" draggable="true" style="left: 340px; top: 50px;">
+          </div>
+
+          <div class="draggable-field" draggable="true" ondragstart="startDrag(event)" data-field-id="10">
             <input type="text" class="form-control form-control-sm mt-3 smaller-input" placeholder="Field 5"
-              id="draggableInput5" draggable="true" style="left: 450px; top: 10px;">
+              id="draggableInput10" draggable="true" style="left: 450px; top: 50px;">
           </div>
         </div>
 
