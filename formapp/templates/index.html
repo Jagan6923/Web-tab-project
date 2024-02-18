@@ -44,7 +44,7 @@
       width: 100%;
       height: 430px;
       position: relative;
-      border-radius: 20px;
+      border-radius: 10px;
     }
 
     .smaller-input {
@@ -54,13 +54,17 @@
       position: absolute;
       top: 0;
       left: 0;
+      border-radius: 4px;
     }
+
     .smaller-input1 {
       width: auto;
       position: absolute;
       top: 0;
       left: 0;
       background-color: rgb(200, 197, 197);
+      border-radius: 4px;
+      border-inline-color: white;
     }
   </style>
 </head>
@@ -163,54 +167,54 @@
           </div>
         </div>
         <div class="grid" id="emptyGrid">
-          <div class="draggable-field" draggable="true" ondragstart="startDrag(event)" data-field-id="1">
-            <label class="form-control form-control-sm mt-3 smaller-input1" id="draggableInput1" draggable="true"
-              style="left: 10px; top: 10px;">Label 1</label>
+          <div class="draggable-field" draggable="true" ondragstart="startDrag(event)" labelid="1">
+            <label class="smaller-input1" id="draggablelabel1" draggable="true" style="left: 10px; top: 10px;">Label
+              1</label>
           </div>
 
-          <div class="draggable-field" draggable="true" ondragstart="startDrag(event)" data-field-id="2">
-            <label class="form-control form-control-sm mt-3 smaller-input1" id="draggableInput2" draggable="true"
-              style="left: 120px; top: 10px;">Label 2</label>
+          <div class="draggable-field" draggable="true" ondragstart="startDrag(event)" labelid="2">
+            <label class="smaller-input1" id="draggablelabel2" draggable="true" style="left: 120px; top: 10px;">Label
+              2</label>
           </div>
 
-          <div class="draggable-field" draggable="true" ondragstart="startDrag(event)" data-field-id="3">
-            <label class="form-control form-control-sm mt-3 smaller-input1" id="draggableInput3" draggable="true"
-              style="left: 230px; top: 10px;">Label 3</label>
+          <div class="draggable-field" draggable="true" ondragstart="startDrag(event)" labelid="3">
+            <label class="smaller-input1" id="draggablelabel3" draggable="true" style="left: 230px; top: 10px;">Label
+              3</label>
           </div>
 
-          <div class="draggable-field" draggable="true" ondragstart="startDrag(event)" data-field-id="4">
-            <label class="form-control form-control-sm mt-3 smaller-input1" id="draggableInput4" draggable="true"
-              style="left: 340px; top: 10px;">Label 4</label>
+          <div class="draggable-field" draggable="true" ondragstart="startDrag(event)" labelid="4">
+            <label class="smaller-input1" id="draggablelabel4" draggable="true" style="left: 340px; top: 10px;">Label
+              4</label>
           </div>
 
-          <div class="draggable-field" draggable="true" ondragstart="startDrag(event)" data-field-id="5">
-            <label class="form-control form-control-sm mt-3 smaller-input1" id="draggableInput5" draggable="true"
-              style="left: 450px; top: 10px;">Label 5</label>
+          <div class="draggable-field" draggable="true" ondragstart="startDrag(event)" labelid="5">
+            <label class="smaller-input1" id="draggablebel5" draggable="true" style="left: 450px; top: 10px;">Label
+              5</label>
           </div>
 
-          <div class="draggable-field" draggable="true" ondragstart="startDrag(event)" data-field-id="6">
-            <input type="text" class="form-control form-control-sm mt-3 smaller-input" placeholder="Field 1"
-              id="draggableInput6" draggable="true" style="left: 10px; top: 50px;">
+          <div class="draggable-field" draggable="true" ondragstart="startDrag(event)">
+            <input type="text" class=" smaller-input" placeholder="Field 1" id="draggableInput1" draggable="true"
+              style="left: 10px; top: 50px;">
           </div>
 
-          <div class="draggable-field" draggable="true" ondragstart="startDrag(event)" data-field-id="7">
-            <input type="text" class="form-control form-control-sm mt-3 smaller-input" placeholder="Field 2"
-              id="draggableInput7" draggable="true" style="left: 120px; top: 50px;">
+          <div class="draggable-field" draggable="true" ondragstart="startDrag(event)">
+            <input type="text" class="smaller-input" placeholder="Field 2" id="draggableInput2" draggable="true"
+              style="left: 120px; top: 50px;">
           </div>
 
-          <div class="draggable-field" draggable="true" ondragstart="startDrag(event)" data-field-id="8">
-            <input type="text" class="form-control form-control-sm mt-3 smaller-input" placeholder="Field 3"
-              id="draggableInput8" draggable="true" style="left: 230px; top: 50px;">
+          <div class="draggable-field" draggable="true" ondragstart="startDrag(event)">
+            <input type="text" class="smaller-input" placeholder="Field 3" id="draggableInput3" draggable="true"
+              style="left: 230px; top: 50px;">
           </div>
 
-          <div class="draggable-field" draggable="true" ondragstart="startDrag(event)" data-field-id="9">
-            <input type="text" class="form-control form-control-sm mt-3 smaller-input" placeholder="Field 4"
-              id="draggableInput9" draggable="true" style="left: 340px; top: 50px;">
+          <div class="draggable-field" draggable="true" ondragstart="startDrag(event)">
+            <input type="text" class="smaller-input" placeholder="Field 4" id="draggableInput4" draggable="true"
+              style="left: 340px; top: 50px;">
           </div>
 
-          <div class="draggable-field" draggable="true" ondragstart="startDrag(event)" data-field-id="10">
-            <input type="text" class="form-control form-control-sm mt-3 smaller-input" placeholder="Field 5"
-              id="draggableInput10" draggable="true" style="left: 450px; top: 50px;">
+          <div class="draggable-field" draggable="true" ondragstart="startDrag(event)">
+            <input type="text" class="smaller-input" placeholder="Field 5" id="draggableInput5" draggable="true"
+              style="left: 450px; top: 50px;">
           </div>
         </div>
 
@@ -447,55 +451,51 @@
       });
     });
 
-    document.addEventListener("DOMContentLoaded", function () {
-      const emptyGrid = document.getElementById("emptyGrid");
+    // Function to handle drop
+function handleDrop(event) {
+  event.preventDefault();
+  const offsetX = event.clientX - emptyGrid.getBoundingClientRect().left;
+  const offsetY = event.clientY - emptyGrid.getBoundingClientRect().top;
+  const draggedElementId = event.dataTransfer.getData("text/plain");
+  const draggedElement = document.getElementById(draggedElementId);
 
-      emptyGrid.addEventListener("dragover", function (event) {
-        event.preventDefault();
-      });
+  // Get data from the dragged element
+  const data = draggedElement.getAttribute("placeholder");
+  const x_axis = offsetX;
+  const y_axis = offsetY;
 
-      emptyGrid.addEventListener("drop", function (event) {
-        event.preventDefault();
-        const offsetX = event.clientX - emptyGrid.getBoundingClientRect().left;
-        const offsetY = event.clientY - emptyGrid.getBoundingClientRect().top;
-        const draggedElementId = event.dataTransfer.getData("text/plain");
-        const draggedElement = document.getElementById(draggedElementId);
-        draggedElement.style.left = offsetX + "px";
-        draggedElement.style.top = offsetY + "px";
-      });
-    });
-
-    function startDrag(event) {
-      event.dataTransfer.setData("text/plain", event.target.id);
+  // Call a function to send data to the server using AJAX for each of the five draggable input fields
+  for (let i = 1; i <= 5; i++) {
+    const inputId = document.getElementById(`draggableInput${i}`);
+    if (inputId && inputId.id === draggedElementId) {
+      sendDataToServer(data, x_axis, y_axis, i); // Pass the input ID as well
+      break; // Exit loop once found
     }
+  }
+}
 
-
-    $(document).ready(function () {
-      $('#gridsubmitButton').click(function () {
-        var data = $('#draggableInput').val();
-        var x_axis = parseFloat($('#draggableInput').css('left').replace('px', ''));
-        var y_axis = parseFloat($('#draggableInput').css('top').replace('px', ''));
-        $.ajax({
-          type: 'POST',
-          url: '/save_draggable_input/',
-          data: {
-            'data': data,
-            'x_axis': x_axis,
-            'y_axis': y_axis,
-            'csrfmiddlewaretoken': '{{ csrf_token }}'
-          },
-          success: function (response) {
-            $('#confirmationMessage').removeClass('bg-danger').addClass('bg-info').text('Data submitted successfully!');
-            setTimeout(function () {
-              $('#confirmationMessage').text('');
-            }, 2000);
-          },
-          error: function (xhr, status, error) {
-            console.error(xhr.responseText);
-          }
-        });
-      });
-    });
+// Function to send data to the server using AJAX
+function sendDataToServer(data, x_axis, y_axis, inputId) {
+  $.ajax({
+    type: 'POST',
+    url: '/save_draggable_input/',
+    data: {
+      'data': data,
+      'x_axis': x_axis,
+      'y_axis': y_axis,
+      'input_id': inputId, // Pass the input ID to identify which input field it is
+      'csrfmiddlewaretoken': '{{ csrf_token }}' // Ensure you have CSRF token available
+    },
+    success: function (response) {
+      console.log('Data submitted successfully:', response);
+      // Handle success response as needed
+    },
+    error: function (xhr, status, error) {
+      console.error('Error:', xhr.responseText);
+      // Handle error response as needed
+    }
+  });
+}
 
   </script>
 </body>

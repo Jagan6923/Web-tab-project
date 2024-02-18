@@ -1,7 +1,8 @@
 # views.py in formapp app
 from django.shortcuts import render
 from django.http import JsonResponse
-from .models import Project,DraggableInput
+from .models import Project, DraggableInput
+from django.core.exceptions import ObjectDoesNotExist
 
 def index(request):
     return render(request, 'index.html')
@@ -25,10 +26,19 @@ def validate_project_name(request):
 
 def save_draggable_input(request):
     if request.method == 'POST':
-        data = request.POST.get('data')
-        x_axis = request.POST.get('x_axis')
-        y_axis = request.POST.get('y_axis')
-        
-        DraggableInput.objects.create(data=data, x_axis=x_axis, y_axis=y_axis)
-        return JsonResponse({'message': 'Draggable input data saved successfully!'})
-    return JsonResponse({'message': 'Invalid request'}, status=400)
+        try:
+            data = request.POST.get('data')
+            x_axis = request.POST.get('x_axis')
+            y_axis = request.POST.get('y_axis')
+            input_id = request.POST.get('input_id')
+            
+            # Perform any necessary validation here
+            
+            # Create DraggableInput instance and save to the database
+            DraggableInput.objects.create(data=data, x_axis=x_axis, y_axis=y_axis, input_id=input_id)
+            
+            return JsonResponse({'message': 'Data submitted successfully!'})
+        except Exception as e:
+            return JsonResponse({'error': str(e)}, status=400)
+    else:
+        return JsonResponse({'error': 'Invalid request method.'}, status=400)
